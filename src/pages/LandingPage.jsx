@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
+import collegeLogo from '../assets/college-logo.png';
 import { Link } from 'react-router-dom';
 import './LandingPage.css';
 
-// College logo served from public/assets/
-const collegeLogo = '/assets/college-logo.png';
+
 
 // Fade-in animation variants
 const fadeUp = {
