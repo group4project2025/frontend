@@ -320,7 +320,7 @@ export default function Profile() {
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
                     <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
                         <div className="p-6 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white">
-                            <h2 className="text-xl font-bold">Edit Student Profile</h2>
+                            <h2 className="text-xl font-bold">View Student Profile</h2>
                             <button
                                 onClick={() => { setIsEditModalOpen(false); setEditingStudent(null); }}
                                 className="text-gray-500 hover:text-gray-700 text-2xl leading-none"
