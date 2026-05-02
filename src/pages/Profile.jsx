@@ -293,7 +293,7 @@ export default function Profile() {
                                                                     onClick={() => handleEditClick(p)}
                                                                     className="text-blue-600 hover:text-blue-900 font-bold text-xs uppercase"
                                                                 >
-                                                                    Edit
+                                                                    View
                                                                 </button>
                                                                 <button
                                                                     onClick={() => handleDelete(p.uid)}
