@@ -18,13 +18,16 @@ const PlacementRecords = () => {
     }, []);
 
     const loadYears = async () => {
-        try {
-            const data = await fetchYears();
-            setYears(data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    setLoading(true);
+    try {
+        const data = await fetchYears();
+        setYears(data);
+    } catch (err) {
+        console.error(err);
+    } finally {
+        setLoading(false);
+    }
+};
 
     const handleAddYear = async (e) => {
         e.preventDefault();
@@ -40,16 +43,19 @@ const PlacementRecords = () => {
     };
 
     const handleYearChange = async (year) => {
-        setSelectedYear(year);
-        setSelectedCompany('');
-        setRecords([]);
-        try {
-            const data = await fetchCompanies(year);
-            setCompanies(data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    setSelectedYear(year);
+    setSelectedCompany('');
+    setRecords([]);
+    setLoading(true);
+    try {
+        const data = await fetchCompanies(year);
+        setCompanies(data);
+    } catch (err) {
+        console.error(err);
+    } finally {
+        setLoading(false);
+    }
+};
 
     const handleAddCompany = async (e) => {
         e.preventDefault();
@@ -66,15 +72,18 @@ const PlacementRecords = () => {
     };
 
     const handleCompanyChange = async (company) => {
-        setSelectedCompany(company);
-        const tbName = `${company}_${selectedYear}`;
-        try {
-            const data = await fetchRecords(tbName);
-            setRecords(data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+    setSelectedCompany(company);
+    const tbName = `${company}_${selectedYear}`;
+    setLoading(true);
+    try {
+        const data = await fetchRecords(tbName);
+        setRecords(data);
+    } catch (err) {
+        console.error(err);
+    } finally {
+        setLoading(false);
+    }
+};
 
     const handleAddText = async (e) => {
         e.preventDefault();
@@ -236,11 +245,15 @@ const PlacementRecords = () => {
                             {/* Record List */}
                             <div className="space-y-4">
                                 <h2 className="text-xl font-bold text-black px-2">Records Listing</h2>
-                                {records.length === 0 ? (
-                                    <div className="text-center py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-100">
-                                        <p className="text-gray-400">No records found for this company.</p>
-                                    </div>
-                                ) : (
+                            {loading ? (
+                                <div className="text-center py-12">
+                                    <p className="text-gray-500 animate-pulse">Loading records...</p>
+                                </div>
+                            ) : records.length === 0 ? (
+                                <div className="text-center py-12 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-100">
+                                    <p className="text-gray-400">No records found for this company.</p>
+                                </div>
+                            ) : (
                                     records.map((record) => (
                                         <div key={record.id} className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
                                             {record.text_data ? (
