@@ -63,7 +63,7 @@ export default function Profile() {
             const sanitizedForm = { ...form };
             const intFields = [
                 "phone", "tenth_percentage", "twelfth_percentage",
-                "cgpa", "no_of_backlogs", "let_diploma_percentage"
+                "no_of_backlogs", "let_diploma_percentage"
             ];
 
             intFields.forEach(field => {
@@ -144,7 +144,7 @@ export default function Profile() {
             const sanitizedStudent = { ...editingStudent };
             const intFields = [
                 "phone", "tenth_percentage", "twelfth_percentage",
-                "cgpa", "no_of_backlogs", "let_diploma_percentage"
+                "no_of_backlogs", "let_diploma_percentage"
             ];
 
             intFields.forEach(field => {
